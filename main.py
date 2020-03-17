@@ -9,6 +9,10 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.php")
+
+@app.route("/generatorstringtest/generatortest.py")
+def generatortest():
+    return render_template("generatortest.py")
     
 if __name__ == "__main__":
     app.run(debug=True)
