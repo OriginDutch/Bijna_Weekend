@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Latest compiled and minified CSS -->
+    <?php include 'functions.php'; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/stylingglobal.css">
-    <?php include 'functions.php'; ?>
+    
 
 </head>
 <body> 
@@ -20,6 +21,7 @@
         <p>Klopt deze status niet? Check je opnieuw in/uit. Mocht dit probleem blijven voorkomen, <br>
         contacteer je netwerkbeheerder.</p>
         
+        <?php presenceHistory(); ?>
         
     </div>
     <!-- jQuery library -->

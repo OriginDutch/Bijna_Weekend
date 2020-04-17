@@ -17,9 +17,7 @@
     <?php include 'adminsidebar.php';?>
 
     <div class="content">
-        <p>Nieuwe student toevoegen <a href="addNewStudent.php" class="button">+</a></p>
-        <p>Nieuwe klas toevoegen <a href="addNewClass.php" class="button">+</a></p>
-        <p>Studenten beheren <a href="studentList.php" class="button">+</a></p>
+        <?php loadUserListAdmin(); ?>
     </div>
 </body>
 </html>
