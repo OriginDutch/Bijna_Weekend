@@ -1,4 +1,4 @@
-<?php include ('config.php'); ?>
+<?php include ('../config.php'); ?>
 
 <!DOCTYPE html>
 <html>
@@ -24,37 +24,19 @@
   <ul id="gallery">
     <?php
 
-      $sql_query="SELECT filePath FROM images";
+      $sql_query="SELECT photoPath FROM users";
       $resultset = mysqli_query($db, $sql_query) or die("database error:". mysqli_error($db));
       
       while($rows = mysqli_fetch_array($resultset) ) { ?>
         <li>					
             <!-- get $_SERVER['HTTP_REFERER'] from upload_files dir -->
             <!-- img a href here -->
-          <img src="http://localhost/crm/upload_files/<?php echo $rows["filePath"]; ?>" class="images"></a>
+          <img src="<?php echo $rows["photoPath"]; ?>" class="images"></a>
         </li>
 
     <?php } ?>
   </ul>		
 
-<hr>
-    <!-- FOLDERS ARE SHOWN HERE -->
-  <ul id="folders">   
-    <?php
-
-      $sql_query2="SELECT folderPath, folderName FROM imageFolders";
-      $resultset = mysqli_query($db, $sql_query2) or die("database error:".mysqli_error($db));
-      
-      while($rows = mysqli_fetch_array($resultset)) { ?>
-        <li>
-          <a href= <?php echo $rows["folderPath"]; ?> >
-          <img src="http://localhost/crm/upload_files/images/folder_inactive.png"></a>
-          <?php echo $rows["folderName"]; ?>
-        </li>
-
-    <?php } ?>
-  </ul>
-       
 <hr>
 
 </body>
