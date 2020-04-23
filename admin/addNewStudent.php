@@ -13,7 +13,7 @@
 <body> 
     <?php include 'adminsidebar.php';?>
     <div class="content">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <label for="text">Naam leerling</label><br>
             <input type="text" placeholder="voornaam" name="firstName"><br>
             <input type="text" placeholder="achternaam" name="surname"><br>
@@ -30,7 +30,7 @@
             <input type="password" placeholder="wachtwoord" name="passwordOne"><br>
             <input type="password" placeholder="wachtwoord herhalen" name="passwordTwo"><br>
             <label for="text">Foto</label><br>
-            <input type="file" placeholder="foto" name="photopath"><br>
+            <input type="file" placeholder="foto" name="fileToUpload" id="fileToUpload"><br> <!-- was photopath -->
             <br>
             <button type="submit" name="registerPerson">Aanmaken</button>
         </form>

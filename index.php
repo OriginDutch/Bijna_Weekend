@@ -17,18 +17,39 @@
     <?php include 'usersidebar.php';?>
 
     <div class="content">
-        <p>Je bent momenteel :  <?php presence(); ?></p> <!-- checks if the student is present -->
-        <p>Klopt deze status niet? Check je opnieuw in/uit. Mocht dit probleem blijven voorkomen, <br>
-        contacteer je netwerkbeheerder.</p>
+    <?php if (isset($_SESSION['email'])) : ?>
+        <?php 
+            $currentUserQuery = "SELECT firstName, surname, loggedIn FROM users WHERE email = '" . $_SESSION['email'] . "'";
+            $resultUser = mysqli_query($conn, $currentUserQuery);
+            $rowUser = mysqli_fetch_array($resultUser);
+        ?>
+
+        <p>Welkom <strong><?php echo $rowUser['firstName'] . " " . $rowUser['surname']; ?></strong></p>
+        <p>
+            <?php 
+                if($rowUser['loggedIn']== 0){
+                    echo 'Je bent niet ingeklokt';
+                } else {
+                    echo 'Je bent wel ingeklokt';
+                }
+                echo '<p>Klopt deze status niet? Check je opnieuw in/uit. Mocht dit probleem blijven voorkomen, <br>
+            contacteer je netwerkbeheerder.</p>';
+            ?>
+        </p>
+        <form action="functions.php" method="post">
+            <button type="submit" name="checkInOut">
+                <?php 
+                    if($rowUser['loggedIn']== 0){
+                        echo 'Inklokken';
+                    } else {
+                        echo 'Uitklokken';
+                    }
+                ?>
+            </button>
+        </form>
+    <?php endif ?>
+    <?php presenceHistory(); ?>
         
-        <?php presenceHistory(); ?>
-        
-    </div>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

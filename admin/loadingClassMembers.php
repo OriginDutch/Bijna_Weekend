@@ -20,7 +20,7 @@
             echo "<td><input type='text' name='surname' value='"        . $row['surname']       . "'></td>";
             echo "<td><input type='text' name='studentNumber' value='"  . $row['studentNumber'] . "'></td>"; 
             echo "<td><input type='text' name='email' value='"          . $row['email']         . "'></td>";
-            echo "<td><input type='text' name='email' value='"          . $row['Status']         . "'></td>";
+            echo "<td><input type='text' name='status' value='"         . $row['status']        . "'></td>";
             echo "</tr>";		
         }
         echo "</table";

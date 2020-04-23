@@ -67,3 +67,21 @@ div.content {
     color: black;
     text-decoration: none;
 }
+
+.sidebar img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+  }
+  
+  .sidebar img:hover {
+    border-radius: 0px;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .sidebar a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
