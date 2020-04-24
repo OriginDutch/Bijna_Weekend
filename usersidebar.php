@@ -1,3 +1,13 @@
+<?php 
+    // function to get the current page name
+    function pageName() 
+    {
+        return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+    }
+
+    $currentPage = pageName(); 
+?>
+
 <div class="sidebar">
     <?php if (isset($_SESSION['email'])) : ?>
         <?php 
@@ -10,10 +20,9 @@
     <?php endif ?>
 
     <img src="<?php echo $rowUser['photoPath']?>" width="100px" alt="userImg"> </br>
-    <a class="active" href="index.php">Dashboard</a>
+    <a class=<?php echo $currentPage == 'index.php' ? 'active':NULL;?> href="index.php">Dashboard</a>
     <a href="admin/classview.php">Klas</a>
     <a href="admin/adminhome.php">Admin</a>
-    <a href="#about">4</a>
     <form method="post">
         <button type="submit" class="btn" name="logout_btn">Uitloggen</button>
 	</form>

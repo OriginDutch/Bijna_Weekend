@@ -252,17 +252,52 @@
             while($row = mysqli_fetch_assoc($result))
             {
                 echo "<tr>";
-                    echo "<form method=submit>";
+                    echo "<form method=post>";
                     echo "<td>" . $row['className'] . "</td>";
                     echo "<td>" . $row['study'] . "</td>";
                     
-                    echo "<td><input type='hidden' value='" . $row['className'] . "' name='name'></td>";
-                    echo "<td><button type='submit' formaction='viewStudents.php()'>Bekijken</button></td>";
+                    echo "<td><input type='hidden' value='" . $row['className'] . "' name='className'></td>";
+                    echo "<td><button type='submit' name='goToClass'>Bekijken</button></td>";
                     echo "</form>";
                 echo "</tr>";
             } 
         }
     }
 
+    if(isset($_POST['goToClass']))
+    {
+        $_SESSION['currentClass'] = $_POST['className'];
+        header('location: viewStudents.php');
+    }
 
+    function loadClassMembers() 
+    {   
+        global $conn;
+        $class = $_SESSION['currentClass'];
+        $sql = "SELECT id, firstName, surname, studentNumber, email, class, loggedIn FROM users WHERE class='$class'";
+		$result = mysqli_query($conn, $sql);
+        if($result) 
+        {
+			echo "<table>";
+            echo "<th>Voornaam</th>";
+            echo "<th>Achternaam</th>";
+            echo "<th>Studentnummer</th>";
+            echo "<th>Email</th>";
+            echo "<th>Status</th>";
+			while($row = mysqli_fetch_assoc($result)){
+                echo "<form method='post'>";
+				echo "<tr>";
+                echo "<td><input type='text' name='firstName' value='"      . $row['firstName']     . "'></td>";
+                echo "<td><input type='text' name='surname' value='"        . $row['surname']       . "'></td>";
+                echo "<td><input type='text' name='studentNumber' value='"  . $row['studentNumber'] . "'></td>"; 
+                echo "<td><input type='text' name='email' value='"          . $row['email']         . "'></td>";
+                echo "<td><input type='text' name='status' value='"         . $row['loggedIn']      . "'></td>";                
+                echo "<td><button type='submit' name='changeUserInfo'>Aanpassen     </button>            </td>";
+                echo "<td><input type='hidden' name='studentID' value='"    . $row['id']            . "'></td>";
+                echo "</tr>";	
+                echo "</form>";		
+			}
+            echo "</table>";
+        }
+    }
 ?>

@@ -71,19 +71,18 @@
         $weekStartTime = (new DateTime())->setISODate(date("Y"), idate('W'))->format('Y-m-d');   //start date monday
         $weekEndTime   = (new DateTime())->setISODate(date("Y"), idate('W'), 5)->format('Y-m-d'); //end date friday
 
-        //echo $weekStartTime;
-        //echo "<br>";
-        //echo $weekEndTime;
-        //echo "<br>";
+        echo $weekStartTime;
+        echo "<br>";
+        echo $weekEndTime;
+        echo "<br>";
         $query = "SELECT dateStamp, checkTime, newStatus FROM checkInOutTimes WHERE studentNumber = '$currentUser'"; //AND $date >= $weekStartTime AND $date <= $weekEndTime
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0)
         {
-            
             while($row = mysqli_fetch_assoc($result))
             {
-                if(($row['dateStamp'] != $weekStartTime) && ($row['dateStamp'] != $weekEndTime)) 
+                if(($row['dateStamp'] <= $weekStartTime) && ($row['dateStamp'] >= $weekEndTime)) 
                 {
                     echo "<table>";
                     echo "<th>Datum</th>";
